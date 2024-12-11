@@ -1,0 +1,132 @@
+
+body{
+  background-color: #bbd5f1;
+}
+.login-container {
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Task Tracker heading */
+.heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.login-page {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin: 50px auto;
+  max-width: 400px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.login-page h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.login-page form {
+  text-align: left;
+}
+
+.login-page input {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-page input:focus {
+  border-color: #007BFF;
+}
+
+.login-page button {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto; /* Center the button */
+  background: #73a4d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-page button:hover {
+  background-color: #b30000;
+}
+
+p {
+  font-size: 14px;
+  color: red;
+}
+
+/* New styles for the Logout button */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button:hover {
+  background-color: #ff3333;
+}
+
+/* Make sure the login container is positioned relative to allow absolute positioning of the button */
+.login-container {
+  position: relative;
+}
+
+/* Style for the Google login button */
+.google-login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #224274;  /* Google Blue */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  margin-top: 20px;
+}
+
+/* Add a hover effect */
+.google-login-button:hover {
+  background-color: #357AE8;  /* Darker blue when hovered */
+}
+
+/* Add some responsiveness for mobile screens */
+@media (max-width: 600px) {
+  .google-login-button {
+    width: 200px;
+  }
+}

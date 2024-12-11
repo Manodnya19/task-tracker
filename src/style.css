@@ -1,0 +1,225 @@
+/* Global background color */
+body {
+  background-color: #bbd5f1;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Task tracker container styling */
+.task-tracker {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 600px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Header styling */
+h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Task input form container */
+.task-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Task input field */
+.task-input input {
+  padding: 10px;
+  font-size: 16px;
+  width: 55%; /* Adjusted width for better alignment with dropdown */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.task-input input:focus {
+  border-color: #007BFF;
+}
+
+/* Add task button */
+.task-input button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-input button:hover {
+  background-color: #0056b3;
+}
+
+/* Priority dropdown styling */
+.priority-dropdown {
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.priority-dropdown:hover {
+  border-color: #007BFF;
+  background-color: #e7f1ff;
+}
+
+/* Date picker styling */
+.deadline-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.deadline-input:hover {
+  border-color: #007BFF;
+  background-color: #e7f1ff;
+}
+
+/* Logout button */
+.logout-button {
+  padding: 10px 20px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #e60000;
+}
+
+/* Task table styles */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.task-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.task-table .task-row:hover {
+  background-color: #f9f9f9;
+}
+
+.task-table .priority-tag {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.task-table .priority-tag.high {
+  background-color: #ff4d4d;
+}
+
+.task-table .priority-tag.medium {
+  background-color: #ffc107;
+}
+
+.task-table .priority-tag.low {
+  background-color: #4caf50;
+}
+
+/* Delete button styling */
+.task-table td button {
+  background: #10450f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-table td button:hover {
+  background-color: #a71d2a;
+}
+
+/* Chart container */
+.analytics {
+  margin-top: 30px;
+}
+
+/* Center the delete button 'X' inside the table cell */
+.task-table td {
+  text-align: center;  /* Center horizontally */
+  vertical-align: middle; /* Center vertically */
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+/* Task table delete button styling */
+.task-table td button {
+  background: none;
+  color: #dc3545;
+  border: none;
+  font-size: 18px; /* Adjust font size to your preference */
+  cursor: pointer;
+}
+
+.task-table td button:hover {
+  color: #0f0607; /* Darker red on hover */
+}
+
+.sorting-icons {
+  display: inline-block;
+  float: right;
+}
+
+.sorting-icons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.task-table th {
+  position: relative;
+}
+
+.task-table th button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
