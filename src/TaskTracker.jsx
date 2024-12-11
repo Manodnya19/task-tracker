@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { auth } from './Firebase'; // Import Firebase auth for logout functionality
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import { db } from './Firebase'; // Import Firestore instance
 import './style.css'; // Import your custom CSS for styling
@@ -18,37 +18,49 @@ const TaskTracker = () => {
   const [sortOrder, setSortOrder] = useState('asc'); // State for sort order (ascending or descending)
   const navigate = useNavigate(); // Use navigate to redirect
 
-  // Fetch tasks from Firestore when the component mounts
+  // Fetch tasks from Firestore in real-time using onSnapshot
   useEffect(() => {
-    const fetchTasks = async () => {
-      const querySnapshot = await getDocs(collection(db, 'tasks'));
-      const taskList = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setTasks(taskList);
-    };
+    const user = auth.currentUser;
+    if (user) {
+      // Use onSnapshot to listen to real-time updates for the logged-in user's tasks
+      const unsubscribe = onSnapshot(
+        collection(db, 'tasks'),
+        (querySnapshot) => {
+          // Filter tasks to show only the logged-in user's tasks
+          const taskList = querySnapshot.docs
+            .filter((doc) => doc.data().userId === user.uid) // Filter tasks for the logged-in user
+            .map((doc) => ({ ...doc.data(), id: doc.id }));
+          setTasks(taskList); // Update state with the latest tasks
+        },
+        (error) => {
+          console.log('Error fetching tasks:', error);
+        }
+      );
 
-    fetchTasks();
+      // Cleanup on component unmount
+      return () => unsubscribe();
+    }
   }, []);
 
   // Add a new task to Firestore
   const addTask = async () => {
-    if (taskInput.trim()) {
+    const user = auth.currentUser;  // Get the logged-in user
+    if (user && taskInput.trim() !== '') {  // Ensure task input is not empty
       try {
-        const docRef = await addDoc(collection(db, 'tasks'), {
-          text: taskInput,
+        // Add a new task with userId to associate it with the logged-in user
+        await addDoc(collection(db, 'tasks'), {
+          text: taskInput,  // Store the task text
           completed: false,
           priority: priority,
-          deadline: deadline, // Include the deadline field
+          deadline: deadline,
+          userId: user.uid,  // Store userId to associate with the task
         });
-        setTasks([
-          ...tasks,
-          { id: docRef.id, text: taskInput, completed: false, priority: priority, deadline: deadline },
-        ]);
-        setTaskInput('');
-        setPriority('Medium'); // Reset priority to default
-        setDeadline(''); // Reset deadline input
-      } catch (e) {
-        console.error('Error adding task: ', e);
+        setTaskInput('');  // Clear input after adding
+      } catch (error) {
+        console.error('Error adding task:', error);
       }
+    } else {
+      console.log("Task input cannot be empty.");
     }
   };
 
@@ -149,8 +161,6 @@ const TaskTracker = () => {
         />
         <button onClick={addTask}>Add Task</button>
       </div>
-
-      
 
       {/* Task List Section */}
       <h3>Task List</h3> {/* Title for task list */}
